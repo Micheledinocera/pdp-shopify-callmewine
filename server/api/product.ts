@@ -1,12 +1,10 @@
 import type { ShopifyProduct } from "~~/types/ShopifyProduct"
 import { formatShopifyPrice } from "~~/utils/formatters"
 
-// server/api/product.ts
 export default defineEventHandler(async (event): Promise<ShopifyProduct> => {
   const config = useRuntimeConfig(event)
   const queryParams = getQuery(event)
   
-  // Recuperiamo l'id numerico passato dal frontend
   const productId = queryParams.id
   if (!productId) {
     throw createError({
@@ -15,7 +13,6 @@ export default defineEventHandler(async (event): Promise<ShopifyProduct> => {
     })
   }
 
-  // Ricostruiamo il GID completo richiesto da Shopify
   const fullShopifyId = `gid://shopify/Product/${productId}`
 
   const graphqlQuery = {
