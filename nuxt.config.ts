@@ -19,6 +19,9 @@ export default defineNuxtConfig({
       ]
     }
   },
+  imports: {
+    dirs: ['app/composables/**', 'app/composables']
+  },
   css: ['~/assets/css/tailwind.css'],
   devtools: { enabled: true },
   runtimeConfig: {
