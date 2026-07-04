@@ -16,13 +16,21 @@ export default defineNuxtConfig({
         "./app/plugins/**/*.{js,ts}",
         "./app/app.vue",
         "./app/error.vue",
-      ]
-    }
+      ],
+      theme: {
+        extend: {
+          colors: {
+            primary: '#216155',
+            secondary: '#cc4560'
+          }
+        }
+      }
+    },
   },
   imports: {
     dirs: ['app/composables/**', 'app/composables']
   },
-  css: ['~/assets/css/tailwind.css'],
+  css: ['~/assets/css/tailwind.css','~/assets/css/main.css'],
   devtools: { enabled: true },
   runtimeConfig: {
     shopifyStorefrontEndpoint: process.env.SHOPIFY_ENDPOINT,
