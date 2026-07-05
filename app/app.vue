@@ -5,4 +5,5 @@
       <NuxtPage />
     </main>
   </div>
+  <CartPanel />
 </template>

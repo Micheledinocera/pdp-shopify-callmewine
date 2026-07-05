@@ -1,7 +1,11 @@
 export const useCart = () => {
   const cartData = useState<any>('cart', () => null);
   const pending = useState<boolean>('cart_pending', () => false);
+  const isCartPanelOpen = useState<boolean>('is_cart_panel_open', () => false);
 
+  const toggleCartPanelOpen= ()=>{
+    isCartPanelOpen.value=!isCartPanelOpen.value;
+  }
   const fetchCart = async () => {
     const savedCartId = localStorage.getItem('shopify_cart_id');
     if (!savedCartId) return;
@@ -53,5 +57,7 @@ export const useCart = () => {
     initCart,
     fetchCart,
     createCart,
+    isCartPanelOpen,
+    toggleCartPanelOpen
   };
 };
