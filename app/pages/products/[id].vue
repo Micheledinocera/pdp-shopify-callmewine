@@ -87,13 +87,25 @@
           </div>
         </div>
 
-        <button
-          @click="handleAddToCart"
-          :disabled="pending || cart"
-          class="w-full bg-primary text-white font-bold tracking-wide py-4 px-6 rounded hover:bg-secondary transition-colors shadow-md uppercase disabled:opacity-50"
-        >
-          Aggiungi al carrello
-        </button>
+        <ClientOnly>
+          <button
+            @click="handleAddToCart"
+            :disabled="pending || cart"
+            class="w-full bg-primary text-white font-bold tracking-wide py-4 px-6 rounded hover:bg-secondary transition-colors shadow-md uppercase disabled:opacity-50"
+          >
+            Aggiungi al carrello
+          </button>
+
+          <!-- Fallback per il server: mostra il bottone disabilitato per evitare scatti visivi -->
+          <template #fallback>
+            <button
+              disabled
+              class="w-full bg-primary text-white font-bold tracking-wide py-4 px-6 rounded opacity-50 uppercase"
+            >
+              Caricamento...
+            </button>
+          </template>
+        </ClientOnly>
       </div>
     </div>
   </div>

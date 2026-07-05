@@ -10,15 +10,21 @@
       />
     </NuxtLink>
 
-    <button class="text-white flex items-center gap-2 hover:opacity-80 relative cursor-pointer" :disabled="pendingCart" @click="toggleCartPanelOpen">
+    <button
+      class="text-white flex items-center gap-2 hover:opacity-80 relative cursor-pointer"
+      :disabled="pendingCart"
+      @click="toggleCartPanelOpen"
+    >
       <span class="text-lg">🛒</span>
-      <span class="bg-white text-primary text-xs font-bold px-2 py-0.5 rounded-full">{{
-        cart?.totalQuantity ?? 0
-      }}</span>
+      <ClientOnly>
+        <span class="bg-white text-primary text-xs font-bold px-2 py-0.5 rounded-full">{{
+          cart?.totalQuantity ?? 0
+        }}</span>
+      </ClientOnly>
     </button>
   </header>
 </template>
 
 <script setup>
-const { cart, pending: pendingCart,toggleCartPanelOpen } = useCart();
+const { cart, pending: pendingCart, toggleCartPanelOpen } = useCart();
 </script>
