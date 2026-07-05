@@ -57,7 +57,6 @@ export const useCart = () => {
   const initCart = async () => {
     if (import.meta.client) {
       await fetchCart();
-      console.log(cartData.value)
     }
   };
 

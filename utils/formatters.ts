@@ -17,8 +17,6 @@ export function formatShopifyPrice(
 }
 
 export function formatShopifyCart(response: any): ShopifyCart {
-  console.log(response.lines.edges[0].node.attributes);
-
   const formattedCart: ShopifyCart = {
     id: response.id,
     checkoutUrl: response.checkoutUrl,
