@@ -56,7 +56,7 @@
               <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
                 <div v-if="pending" class="flex justify-center items-center h-32">
                   <div
-                    class="animate-spin rounded-full h-8 w-8 border-b-2 border-[#721c24]"
+                    class="animate-spin rounded-full h-8 w-8 border-b-2 border-secondary"
                   ></div>
                 </div>
 
@@ -71,7 +71,7 @@
                   <div class="flex justify-end">
                     <button
                       @click="clearCart"
-                      class="text-xs text-gray-400 hover:text-[#721c24] transition-colors underline"
+                      class="text-xs text-gray-400 hover:text-secondary transition-colors underline"
                     >
                       Svuota carrello
                     </button>
@@ -145,7 +145,7 @@
                   class="flex justify-between text-base font-medium text-gray-900 mb-6"
                 >
                   <p class="font-semibold">Totale stimato</p>
-                  <p class="font-bold text-lg text-[#721c24]">{{ cart.totalCost }}</p>
+                  <p class="font-bold text-lg text-secondary">{{ cart.totalCost }}</p>
                 </div>
 
                 <a

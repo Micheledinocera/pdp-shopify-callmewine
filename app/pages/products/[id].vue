@@ -3,7 +3,7 @@
   <div>
     <NuxtLink
       to="/"
-      class="text-sm text-gray-500 hover:text-[#721c24] inline-flex items-center gap-1 mb-6"
+      class="text-sm text-gray-500 hover:text-secondary inline-flex items-center gap-1 mb-6"
     >
       ← Torna alla home
     </NuxtLink>
@@ -43,7 +43,7 @@
           <div
             class="flex items-baseline gap-3 my-4 p-3 bg-gray-50 rounded-md inline-flex"
           >
-            <span class="text-2xl font-bold text-[#721c24]">
+            <span class="text-2xl font-bold text-secondary">
               {{ product?.price || "€ 0,00" }}
             </span>
             <span
@@ -64,7 +64,7 @@
               <input
                 type="checkbox"
                 v-model="giftOption"
-                class="rounded text-[#721c24] focus:ring-[#721c24] h-4 w-4"
+                class="rounded text-secondary focus:ring-secondary h-4 w-4"
               />
               <span>Aggiungi confezione regalo (+€ 2,00)</span>
             </label>
@@ -78,7 +78,7 @@
                 rows="3"
                 maxlength="250"
                 placeholder="Scrivi qui il tuo messaggio d'auguri..."
-                class="w-full text-sm p-2 border border-gray-300 rounded focus:ring-1 focus:ring-[#721c24] focus:border-[#721c24] outline-none"
+                class="w-full text-sm p-2 border border-gray-300 rounded focus:ring-1 focus:ring-secondary focus:border-secondary outline-none"
               ></textarea>
               <span class="text-[10px] text-gray-400 flex justify-end mt-0.5">
                 {{ giftMessage.length }}/250 caratteri
@@ -88,15 +88,19 @@
         </div>
 
         <ClientOnly>
-          <button
-            @click="handleAddToCart"
-            :disabled="pending || cart"
-            class="w-full bg-primary text-white font-bold tracking-wide py-4 px-6 rounded hover:bg-secondary transition-colors shadow-md uppercase disabled:opacity-50"
-          >
-            Aggiungi al carrello
-          </button>
+          <div>
+            <button
+              @click="handleAddToCart"
+              :disabled="pending || cart"
+              class="w-full bg-primary text-white font-bold tracking-wide py-4 px-6 rounded hover:bg-secondary transition-colors shadow-md uppercase disabled:opacity-50"
+            >
+              Aggiungi al carrello
+            </button>
+            <span v-if="cart" class="text-[10px] text-red-600 flex justify-end mt-0.5">
+              Attenzione, svuotare il carrello per aggiungere un nuovo prodotto
+            </span>
+          </div>
 
-          <!-- Fallback per il server: mostra il bottone disabilitato per evitare scatti visivi -->
           <template #fallback>
             <button
               disabled
@@ -118,7 +122,7 @@ const giftOption = ref(false);
 const giftMessage = ref("");
 
 const { product, pending: pendingProduct } = useProduct(route.params.id);
-const { createCart, pending: pendingCart, cart } = useCart();
+const { createCart, pending: pendingCart, cart, toggleCartPanelOpen } = useCart();
 
 const pending = computed(() => pendingProduct.value || pendingCart.value);
 
@@ -129,6 +133,7 @@ async function handleAddToCart() {
       giftOption: giftOption.value,
       giftMessage: giftMessage.value,
     });
+    toggleCartPanelOpen();
   } catch (err) {}
 }
 </script>
