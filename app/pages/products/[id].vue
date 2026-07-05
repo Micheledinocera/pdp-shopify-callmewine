@@ -13,7 +13,7 @@
       <div
         class="flex justify-center items-center bg-white p-8 rounded-lg border border-gray-100 shadow-sm min-h-[400px]"
       >
-        <div class="animate-pulse flex space-x-4 w-full justify-center" v-if="pending">
+        <div class="animate-pulse flex space-x-4 w-full justify-center" v-if="pendingProduct">
           <div class="w-64 h-80 bg-gray-200 rounded"></div>
         </div>
         <img
@@ -104,7 +104,7 @@ const giftMessage = ref("");
 const isLoading = ref(false);
 
 const { product, pending: pendingProduct, error } = useProduct(route.params.id);
-const { createCart, pending: pendingCart } = useCart();
+const { cart, createCart, pending: pendingCart } = useCart();
 
 const pending = computed(() => pendingProduct.value || pendingCart.value);
 
@@ -113,6 +113,7 @@ async function handleAddToCart() {
 
   try {
     await createCart(product.value.variantId, 1);
+    console.log(cart.value)
   } catch (err) {}
 }
 </script>
