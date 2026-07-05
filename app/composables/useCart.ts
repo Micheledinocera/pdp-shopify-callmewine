@@ -6,6 +6,7 @@ export const useCart = () => {
   const toggleCartPanelOpen = () => {
     isCartPanelOpen.value = !isCartPanelOpen.value;
   };
+
   const fetchCart = async () => {
     const savedCartId = localStorage.getItem('shopify_cart_id');
     if (!savedCartId) return;
@@ -24,12 +25,20 @@ export const useCart = () => {
     }
   };
 
-  const createCart = async (variantId: String, quantity = 1) => {
+  const createCart = async (
+    variantId: String,
+    quantity = 1,
+    options?: {giftOption: boolean; giftMessage: string},
+  ) => {
     pending.value = true;
     try {
       const data = await $fetch('/api/cart/create', {
         method: 'POST',
-        body: {variantId, quantity},
+        body: {
+          variantId,
+          quantity,
+          options
+        },
       });
 
       if (data?.id) {
@@ -48,6 +57,7 @@ export const useCart = () => {
   const initCart = async () => {
     if (import.meta.client) {
       await fetchCart();
+      console.log(cartData.value)
     }
   };
 
@@ -64,6 +74,6 @@ export const useCart = () => {
     createCart,
     isCartPanelOpen,
     toggleCartPanelOpen,
-    clearCart
+    clearCart,
   };
 };

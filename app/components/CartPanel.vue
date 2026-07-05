@@ -107,6 +107,21 @@
                         <p class="mt-1 text-xs text-gray-400 uppercase tracking-wider">
                           {{ item.vendor }}
                         </p>
+                        <div
+                          v-if="item.giftOption == 'true' && item.giftMessage.length > 0"
+                          class="mt-2 space-y-1 bg-amber-50/60 border border-amber-200/50 p-2 rounded text-xs"
+                        >
+                          <span class="font-medium flex items-center gap-1">
+                            🎁 Confezione regalo inclusa
+                          </span>
+                          <!-- Mostra il messaggio di auguri -->
+                          <span class="block text-gray-600 italic mt-0.5">
+                            <span class="font-medium not-italic text-gray-700"
+                              >Dedica:</span
+                            >
+                            "{{ item.giftMessage }}"
+                          </span>
+                        </div>
                       </div>
 
                       <div class="flex items-center justify-between text-sm">

@@ -89,7 +89,7 @@
 
         <button
           @click="handleAddToCart"
-          :disabled="pending || isLoading"
+          :disabled="pending || cart"
           class="w-full bg-primary text-white font-bold tracking-wide py-4 px-6 rounded hover:bg-secondary transition-colors shadow-md uppercase disabled:opacity-50"
         >
           Aggiungi al carrello
@@ -104,17 +104,19 @@ const route = useRoute();
 
 const giftOption = ref(false);
 const giftMessage = ref("");
-const isLoading = ref(false);
 
-const { product, pending: pendingProduct, error } = useProduct(route.params.id);
-const { cart, createCart, pending: pendingCart } = useCart();
+const { product, pending: pendingProduct } = useProduct(route.params.id);
+const { createCart, pending: pendingCart, cart } = useCart();
 
 const pending = computed(() => pendingProduct.value || pendingCart.value);
 
 async function handleAddToCart() {
   if (!product.value?.variantId) return;
   try {
-    await createCart(product.value.variantId, 1);
+    await createCart(product.value.variantId, 1, {
+      giftOption: giftOption.value,
+      giftMessage: giftMessage.value,
+    });
   } catch (err) {}
 }
 </script>

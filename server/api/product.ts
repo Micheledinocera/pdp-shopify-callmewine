@@ -85,6 +85,8 @@ export default defineEventHandler(async (event): Promise<ShopifyProduct> => {
         variantNode?.compareAtPrice?.amount,
         variantNode?.compareAtPrice?.currencyCode,
       ),
+      giftOption: false,
+      giftMessage: '',
     };
 
     return formattedProduct;

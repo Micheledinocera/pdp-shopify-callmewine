@@ -6,4 +6,6 @@ export interface ShopifyProduct {
   variantId: string;
   price: string;
   compareAtPrice?: string;
+  giftOption?:boolean;
+  giftMessage?:string;
 }

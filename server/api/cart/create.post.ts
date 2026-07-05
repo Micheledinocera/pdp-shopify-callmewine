@@ -1,12 +1,11 @@
 import {defineEventHandler, readBody, createError} from 'h3';
-import { formatShopifyCart } from '~~/utils/formatters';
+import {formatShopifyCart} from '~~/utils/formatters';
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig(event);
   const body = await readBody(event);
 
-  const {variantId, quantity} = body;
-
+  const {variantId, quantity, options} = body;
   if (!variantId) {
     throw createError({
       statusCode: 400,
@@ -37,6 +36,10 @@ export default defineEventHandler(async (event) => {
                 node {
                   id
                   quantity
+                  attributes {
+                    key
+                    value
+                  }
                   merchandise {
                     ... on ProductVariant {
                       id
@@ -72,6 +75,10 @@ export default defineEventHandler(async (event) => {
           {
             merchandiseId: variantId,
             quantity: quantity || 1,
+            attributes: [
+              ...(options?.giftOption ? [{ key: 'giftOption', value: 'true' }] : []),
+              ...(options?.giftMessage ? [{ key: 'giftMessage', value: options.giftMessage }] : [])
+            ]
           },
         ],
       },

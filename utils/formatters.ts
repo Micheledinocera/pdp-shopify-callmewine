@@ -17,6 +17,8 @@ export function formatShopifyPrice(
 }
 
 export function formatShopifyCart(response: any): ShopifyCart {
+  console.log(response.lines.edges[0].node.attributes);
+
   const formattedCart: ShopifyCart = {
     id: response.id,
     checkoutUrl: response.checkoutUrl,
@@ -39,6 +41,14 @@ export function formatShopifyCart(response: any): ShopifyCart {
         edge.node.merchandise.price.amount,
         edge.node.merchandise.price.currencyCode,
       ),
+      giftOption: response.lines.edges[0].node.attributes.find(
+        (attribute: {key: string; value: string}) =>
+          attribute.key == 'giftOption',
+      )?.value,
+      giftMessage: response.lines.edges[0].node.attributes.find(
+        (attribute: {key: string; value: string}) =>
+          attribute.key == 'giftMessage',
+      )?.value,
     };
     return cartItem;
   });

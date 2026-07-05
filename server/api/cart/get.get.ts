@@ -1,5 +1,5 @@
 import {defineEventHandler, getQuery, createError} from 'h3';
-import { formatShopifyCart } from '~~/utils/formatters';
+import {formatShopifyCart} from '~~/utils/formatters';
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig(event);
@@ -35,6 +35,10 @@ export default defineEventHandler(async (event) => {
               node {
                 id
                 quantity
+                attributes {
+                  key
+                  value
+                }
                 merchandise {
                   ... on ProductVariant {
                     id
