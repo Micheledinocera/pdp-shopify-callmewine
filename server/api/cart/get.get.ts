@@ -80,7 +80,6 @@ export default defineEventHandler(async (event) => {
           response.errors[0]?.message || 'Shopify Fetch Cart Error',
       });
     }
-
     return response.data?.cart || null;
   } catch (error: any) {
     throw createError({

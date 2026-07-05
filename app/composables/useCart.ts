@@ -1,6 +1,6 @@
 export const useCart = () => {
-  const cartData = ref(null);
-  const pending = ref(false);
+  const cartData = useState<any>('cart', () => null);
+  const pending = useState<boolean>('cart_pending', () => false);
 
   const fetchCart = async () => {
     const savedCartId = localStorage.getItem('shopify_cart_id');
@@ -11,7 +11,6 @@ export const useCart = () => {
       const data = await $fetch('/api/cart/get', {
         query: {id: savedCartId},
       });
-
       if (data) cartData.value = data;
       else localStorage.removeItem('shopify_cart_id');
     } catch (error) {
@@ -42,9 +41,16 @@ export const useCart = () => {
     }
   };
 
+  const initCart = async () => {
+    if (import.meta.client) {
+      await fetchCart();
+    }
+  };
+
   return {
     cart: cartData,
     pending,
+    initCart,
     fetchCart,
     createCart,
   };
