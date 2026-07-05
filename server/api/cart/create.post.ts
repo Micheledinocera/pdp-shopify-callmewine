@@ -1,4 +1,5 @@
 import {defineEventHandler, readBody, createError} from 'h3';
+import { formatShopifyCart } from '~~/utils/formatters';
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig(event);
@@ -21,6 +22,42 @@ export default defineEventHandler(async (event) => {
             id
             checkoutUrl
             totalQuantity
+            cost {
+              totalAmount {
+                amount
+                currencyCode
+              }
+              subtotalAmount {
+                amount
+                currencyCode
+              }
+            }
+            lines(first: 50) {
+              edges {
+                node {
+                  id
+                  quantity
+                  merchandise {
+                    ... on ProductVariant {
+                      id
+                      title
+                      price {
+                        amount
+                        currencyCode
+                      }
+                      product {
+                        title
+                        vendor
+                        featuredImage {
+                          url
+                          altText
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
           userErrors {
             field
@@ -64,8 +101,7 @@ export default defineEventHandler(async (event) => {
         statusMessage: errorMsg || 'Shopify Cart Creation Error',
       });
     }
-
-    return response.data?.cartCreate?.cart;
+    return formatShopifyCart(response.data?.cartCreate?.cart);
   } catch (error: any) {
     throw createError({
       statusCode: error.statusCode || 500,

@@ -1,4 +1,5 @@
 import {defineEventHandler, getQuery, createError} from 'h3';
+import { formatShopifyCart } from '~~/utils/formatters';
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig(event);
@@ -45,6 +46,10 @@ export default defineEventHandler(async (event) => {
                     product {
                       title
                       vendor
+                      featuredImage {
+                        url
+                        altText
+                      }
                     }
                   }
                 }
@@ -80,7 +85,7 @@ export default defineEventHandler(async (event) => {
           response.errors[0]?.message || 'Shopify Fetch Cart Error',
       });
     }
-    return response.data?.cart || null;
+    return formatShopifyCart(response.data?.cart) || null;
   } catch (error: any) {
     throw createError({
       statusCode: error.statusCode || 500,

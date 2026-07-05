@@ -10,12 +10,15 @@
       />
     </NuxtLink>
 
-    <!-- Placeholder per il bottone del carrello side-panel -->
-    <button class="text-white flex items-center gap-2 hover:opacity-80 relative">
+    <button class="text-white flex items-center gap-2 hover:opacity-80 relative cursor-pointer" disabled="cartPending">
       <span class="text-lg">🛒</span>
-      <span class="bg-white text-primary text-xs font-bold px-2 py-0.5 rounded-full"
-        >0</span
-      >
+      <span class="bg-white text-primary text-xs font-bold px-2 py-0.5 rounded-full">{{
+        cart?.totalQuantity ?? 0
+      }}</span>
     </button>
   </header>
 </template>
+
+<script setup>
+const { cart, cartPending } = useCart();
+</script>

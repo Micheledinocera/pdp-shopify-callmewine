@@ -3,7 +3,7 @@ export const useProduct = (productId: string) => {
     query: { id: productId },
     key: `product-fetch-${productId}`
   })
-
+  
   return {
     product,
     pending,

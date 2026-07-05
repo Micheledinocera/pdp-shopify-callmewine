@@ -5,5 +5,5 @@ export interface ShopifyProduct {
   imageAlt: string;
   variantId: string;
   price: string;
-  compareAtPrice: string;
+  compareAtPrice?: string;
 }
