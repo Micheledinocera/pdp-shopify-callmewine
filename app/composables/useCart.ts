@@ -3,6 +3,8 @@ export const useCart = () => {
   const pending = useState<boolean>('cart_pending', () => false);
   const isCartPanelOpen = useState<boolean>('is_cart_panel_open', () => false);
 
+  const {currentLocale} = useLocale();
+
   const toggleCartPanelOpen = () => {
     isCartPanelOpen.value = !isCartPanelOpen.value;
   };
@@ -14,7 +16,7 @@ export const useCart = () => {
     pending.value = true;
     try {
       const data = await $fetch('/api/cart/get', {
-        query: {id: savedCartId},
+        query: {id: savedCartId, countryCode: currentLocale.value.country},
       });
       if (data) cartData.value = data;
       else localStorage.removeItem('shopify_cart_id');
@@ -34,10 +36,11 @@ export const useCart = () => {
     try {
       const data = await $fetch('/api/cart/create', {
         method: 'POST',
+        query: {countryCode: currentLocale.value.country},
         body: {
           variantId,
           quantity,
-          options
+          options,
         },
       });
 

@@ -1,12 +1,18 @@
 export const useProduct = (productId: string) => {
-  const { data: product, pending, error } = useFetch('/api/product', {
-    query: { id: productId },
-    key: `product-fetch-${productId}`
-  })
-  
+  const {currentLocale} = useLocale();
+
+  const {
+    data: product,
+    pending,
+    error,
+  } = useFetch('/api/product', {
+    query: {id: productId, countryCode: currentLocale.value.country},
+    key: `product-fetch-${productId}`,
+  });
+
   return {
     product,
     pending,
-    error
-  }
-}
+    error,
+  };
+};

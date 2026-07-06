@@ -3,8 +3,12 @@ import {formatShopifyCart} from '~~/utils/formatters';
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig(event);
-  const body = await readBody(event);
 
+  const queryParams = getQuery(event);
+  const countryCode = queryParams.countryCode;
+  
+  const body = await readBody(event);
+  
   const {variantId, quantity, options} = body;
   if (!variantId) {
     throw createError({
@@ -15,7 +19,7 @@ export default defineEventHandler(async (event) => {
 
   const graphqlQuery = {
     query: `
-      mutation cartCreate($input: CartInput!) {
+      mutation cartCreate($input: CartInput!, $country: CountryCode!) @inContext(country: $country) {
         cartCreate(input: $input) {
           cart {
             id
@@ -70,6 +74,7 @@ export default defineEventHandler(async (event) => {
       }
     `,
     variables: {
+      country: countryCode,
       input: {
         lines: [
           {

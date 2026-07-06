@@ -6,6 +6,7 @@ export default defineEventHandler(async (event): Promise<ShopifyProduct> => {
   const queryParams = getQuery(event);
 
   const productId = queryParams.id;
+  const countryCode = queryParams.countryCode;
   if (!productId) {
     throw createError({
       statusCode: 400,
@@ -17,7 +18,7 @@ export default defineEventHandler(async (event): Promise<ShopifyProduct> => {
 
   const graphqlQuery = {
     query: `
-      query getProduct($id: ID!) {
+      query getProduct($id: ID!, $country: CountryCode!) @inContext(country: $country) {
         product(id: $id) {
           title
           vendor
@@ -45,6 +46,7 @@ export default defineEventHandler(async (event): Promise<ShopifyProduct> => {
     `,
     variables: {
       id: fullShopifyId,
+      country: countryCode
     },
   };
 

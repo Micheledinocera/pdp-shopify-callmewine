@@ -5,6 +5,7 @@ export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig(event);
   const queryParams = getQuery(event);
   const cartId = queryParams.id;
+  const countryCode = queryParams.countryCode;
 
   if (!cartId) {
     throw createError({
@@ -15,7 +16,7 @@ export default defineEventHandler(async (event) => {
 
   const graphqlQuery = {
     query: `
-      query getCart($id: ID!) {
+      query getCart($id: ID!, $country: CountryCode!) @inContext(country: $country) {
         cart(id: $id) {
           id
           checkoutUrl
@@ -65,6 +66,7 @@ export default defineEventHandler(async (event) => {
     `,
     variables: {
       id: cartId,
+      country: countryCode,
     },
   };
 
