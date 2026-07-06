@@ -29,7 +29,18 @@
 </template>
 
 <script setup>
+const { t } = useI18n();
 const productId = '7171746234415'
 const { product, pending, error } = useProduct(productId)
+
+useHead({
+  title: t('index.welcome'),
+  meta: [
+    { name: 'description', content: t('index.description') },
+    { property: 'og:title', content: t('index.welcome') },
+    { property: 'og:description', content: t('index.description') },
+    { property: 'og:image', content: 'https://cdn.shopify.com/s/files/1/0650/4356/2708/files/HP_HeroBanner_-_2026-07-03T180626.757.png?v=1783094794&width=180&height=auto' }
+  ]
+});
 
 </script>

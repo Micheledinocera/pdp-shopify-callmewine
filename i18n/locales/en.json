@@ -1,6 +1,6 @@
 {
     "index": {
-        "welcome": "Fish & chips",
+        "welcome": "Welcome!",
         "description": "Visit the featured product page to test the Shopify Storefront API integration.",
         "loading": "Loading...",
         "viewProduct": "View Product"
