@@ -46,7 +46,7 @@ export default defineEventHandler(async (event): Promise<ShopifyProduct> => {
     `,
     variables: {
       id: fullShopifyId,
-      country: countryCode
+      country: countryCode,
     },
   };
 
@@ -72,7 +72,6 @@ export default defineEventHandler(async (event): Promise<ShopifyProduct> => {
     }
 
     const variantNode = response.data?.product?.variants?.edges[0]?.node;
-
     const formattedProduct: ShopifyProduct = {
       title: response.data?.product?.title || '',
       vendor: response.data?.product?.vendor || '',

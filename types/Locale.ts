@@ -4,4 +4,4 @@ export interface LocaleConfig {
   label: string;
 }
 
-export type SupportedLanguages = 'it' | 'en' | 'fr';
+export type SupportedLanguages = 'it' | 'en' | 'fr' | 'es';

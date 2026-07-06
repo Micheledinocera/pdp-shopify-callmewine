@@ -8,10 +8,10 @@ export function formatShopifyPrice(
 
   const numericPrice = parseFloat(amount);
   if (isNaN(numericPrice)) return '';
-
+  
   return new Intl.NumberFormat('it-IT', {
     style: 'currency',
-    currency: currencyCode || 'EUR',
+    currency: currencyCode || 'GBP',
     currencyDisplay: 'symbol',
   }).format(numericPrice);
 }
@@ -27,6 +27,7 @@ export function formatShopifyCart(response: any): ShopifyCart {
     totalQuantity: response.totalQuantity,
     products: [],
   };
+
   formattedCart.products = response.lines.edges.map((edge: any) => {
     const cartItem: CartItem = {
       quantity: edge.node.quantity,

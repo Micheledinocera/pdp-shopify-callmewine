@@ -1,8 +1,8 @@
-import { defineNuxtConfig } from "nuxt/config";
+import {defineNuxtConfig} from 'nuxt/config';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@nuxtjs/tailwindcss'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/i18n'],
   compatibilityDate: '2025-07-15',
   future: {
     compatibilityVersion: 4,
@@ -10,30 +10,42 @@ export default defineNuxtConfig({
   tailwindcss: {
     config: {
       content: [
-        "./app/components/**/*.{js,vue,ts}",
-        "./app/layouts/**/*.vue",
-        "./app/pages/**/*.vue",
-        "./app/plugins/**/*.{js,ts}",
-        "./app/app.vue",
-        "./app/error.vue",
+        './app/components/**/*.{js,vue,ts}',
+        './app/layouts/**/*.vue',
+        './app/pages/**/*.vue',
+        './app/plugins/**/*.{js,ts}',
+        './app/app.vue',
+        './app/error.vue',
       ],
       theme: {
         extend: {
           colors: {
             primary: '#216155',
-            secondary: '#cc4560'
-          }
-        }
-      }
+            secondary: '#cc4560',
+          },
+        },
+      },
     },
   },
   imports: {
-    dirs: ['app/composables/**', 'app/composables']
+    dirs: ['app/composables/**', 'app/composables'],
   },
-  css: ['~/assets/css/tailwind.css','~/assets/css/main.css'],
-  devtools: { enabled: true },
+  css: ['~/assets/css/tailwind.css', '~/assets/css/main.css'],
+  devtools: {enabled: true},
   runtimeConfig: {
     shopifyStorefrontEndpoint: process.env.SHOPIFY_ENDPOINT,
     shopifyStorefrontToken: process.env.SHOPIFY_TOKEN,
-  }
-})
+  },
+  i18n: {
+    strategy: 'no_prefix',
+    defaultLocale: 'en',
+    langDir: 'locales',
+    locales: [
+      {code: 'it', file: 'it.json'},
+      {code: 'en', file: 'en.json'},
+      {code: 'es', file: 'es.json'},
+      {code: 'fr', file: 'fr.json'},
+    ],
+    detectBrowserLanguage: false,
+  },
+});
