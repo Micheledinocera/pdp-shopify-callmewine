@@ -66,7 +66,7 @@
                 v-model="giftOption"
                 class="rounded text-secondary focus:ring-secondary h-4 w-4"
               />
-              <span>Aggiungi confezione regalo (+€ 2,00)</span>
+              <span>Aggiungi confezione regalo</span>
             </label>
 
             <div v-if="giftOption" class="mt-3 transition-all duration-200">
