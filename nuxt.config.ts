@@ -48,4 +48,9 @@ export default defineNuxtConfig({
     ],
     detectBrowserLanguage: false,
   },
+  app: {
+    head: {
+      link: [{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}],
+    },
+  },
 });
