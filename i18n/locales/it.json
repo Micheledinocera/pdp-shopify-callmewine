@@ -1,5 +1,30 @@
 {
-    "index":{
-        "welcome":"Benvenuto nello Store di Test"
+    "index": {
+        "welcome": "Benvenuto nello Store di Test",
+        "description": "Accedi alla pagina del nostro prodotto in evidenza per testare l'integrazione con Shopify Storefront API.",
+        "loading": "Caricamento...",
+        "viewProduct": "Visualizza Prodotto"
+    },
+    "product": {
+        "back": "Torna alla home",
+        "loading": "Caricamento...",
+        "productNamePlaceholder": "Nome Prodotto",
+        "pricePlaceholder": "€ 0,00",
+        "giftOption": "Aggiungi confezione regalo",
+        "giftLabel": "Messaggio personalizzato:",
+        "giftPlaceholder": "Scrivi qui il tuo messaggio d'auguri...",
+        "chars": "caratteri",
+        "addToCart": "Aggiungi al carrello",
+        "cartWarning": "Attenzione, svuotare il carrello per aggiungere un nuovo prodotto"
+    },
+    "cart": {
+        "title": "Il tuo Carrello",
+        "empty": "Il tuo carrello è vuoto.",
+        "clear": "Svuota carrello",
+        "giftIncluded": "🎁 Confezione regalo inclusa",
+        "giftMessage": "Messaggio",
+        "quantity": "Quantità:",
+        "estimatedTotal": "Totale stimato",
+        "checkout": "Procedi al Checkout"
     }
 }

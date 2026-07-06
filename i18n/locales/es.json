@@ -1,5 +1,30 @@
 {
-    "index":{
-        "welcome":"hola amigo puedo andar"
+    "index": {
+        "welcome": "¡Bienvenido!",
+        "description": "Accede a la página del producto destacado para probar la integración con Shopify Storefront API.",
+        "loading": "Cargando...",
+        "viewProduct": "Ver producto"
+    },
+    "product": {
+        "back": "Volver a inicio",
+        "loading": "Cargando...",
+        "productNamePlaceholder": "Nombre del producto",
+        "pricePlaceholder": "€ 0,00",
+        "giftOption": "Añadir embalaje de regalo",
+        "giftLabel": "Mensaje personalizado:",
+        "giftPlaceholder": "Escribe aquí tu mensaje de regalo...",
+        "chars": "caracteres",
+        "addToCart": "Agregar al carrito",
+        "cartWarning": "Atención, vacía el carrito para añadir un nuevo producto"
+    },
+    "cart": {
+        "title": "Tu carrito",
+        "empty": "Tu carrito está vacío.",
+        "clear": "Vaciar carrito",
+        "giftIncluded": "🎁 Embalaje de regalo incluido",
+        "giftMessage": "Mensaje",
+        "quantity": "Cantidad:",
+        "estimatedTotal": "Total estimado",
+        "checkout": "Proceder al pago"
     }
 }

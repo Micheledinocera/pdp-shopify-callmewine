@@ -5,7 +5,7 @@
       to="/"
       class="text-sm text-gray-500 hover:text-secondary inline-flex items-center gap-1 mb-6"
     >
-      ← Torna alla home
+      ← {{$t('product.back')}}
     </NuxtLink>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
@@ -32,11 +32,11 @@
         <div>
           <!-- Vendor -->
           <p class="text-sm uppercase tracking-widest text-gray-400 font-medium mb-1">
-            {{ product?.vendor || "Caricamento..." }}
+            {{ product?.vendor || $t('product.loading') }}
           </p>
           <!-- Titolo -->
           <h1 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4">
-            {{ product?.title || "Nome Prodotto" }}
+            {{ product?.title || $t('product.productNamePlaceholder') }}
           </h1>
 
           <!-- Prezzi -->
@@ -44,7 +44,7 @@
             class="flex items-baseline gap-3 my-4 p-3 bg-gray-50 rounded-md inline-flex"
           >
             <span class="text-2xl font-bold text-secondary">
-              {{ product?.price || "€ 0,00" }}
+              {{ product?.price || $t('product.pricePlaceholder') }}
             </span>
             <span
               v-if="product?.compareAtPrice"
@@ -58,30 +58,30 @@
 
           <!-- Opzione Regalo -->
           <div class="bg-amber-50/60 border border-amber-200/70 p-4 rounded-md mb-6">
-            <label
-              class="flex items-center gap-3 cursor-pointer font-medium text-gray-700"
-            >
-              <input
-                type="checkbox"
-                v-model="giftOption"
-                class="rounded text-secondary focus:ring-secondary h-4 w-4"
-              />
-              <span>Aggiungi confezione regalo</span>
-            </label>
+              <label
+                class="flex items-center gap-3 cursor-pointer font-medium text-gray-700"
+              >
+                <input
+                  type="checkbox"
+                  v-model="giftOption"
+                  class="rounded text-secondary focus:ring-secondary h-4 w-4"
+                />
+                <span>{{$t('product.giftOption')}}</span>
+              </label>
 
             <div v-if="giftOption" class="mt-3 transition-all duration-200">
               <label class="block text-xs text-gray-500 mb-1 font-medium"
-                >Messaggio personalizzato:</label
+                >{{$t('product.giftLabel')}}</label
               >
               <textarea
                 v-model="giftMessage"
                 rows="3"
                 maxlength="250"
-                placeholder="Scrivi qui il tuo messaggio d'auguri..."
+                :placeholder="$t('product.giftPlaceholder')"
                 class="w-full text-sm p-2 border border-gray-300 rounded focus:ring-1 focus:ring-secondary focus:border-secondary outline-none"
               ></textarea>
               <span class="text-[10px] text-gray-400 flex justify-end mt-0.5">
-                {{ giftMessage.length }}/250 caratteri
+                {{ giftMessage.length }}/250 {{$t('product.chars')}}
               </span>
             </div>
           </div>
@@ -94,10 +94,10 @@
               :disabled="pending || cart"
               class="w-full bg-primary text-white font-bold tracking-wide py-4 px-6 rounded hover:bg-secondary transition-colors shadow-md uppercase disabled:opacity-50"
             >
-              Aggiungi al carrello
+              {{$t('product.addToCart')}}
             </button>
             <span v-if="cart" class="text-[10px] text-red-600 flex justify-end mt-0.5">
-              Attenzione, svuotare il carrello per aggiungere un nuovo prodotto
+              {{$t('product.cartWarning')}}
             </span>
           </div>
 
@@ -105,9 +105,9 @@
             <button
               disabled
               class="w-full bg-primary text-white font-bold tracking-wide py-4 px-6 rounded opacity-50 uppercase"
-            >
-              Caricamento...
-            </button>
+              >
+                {{$t('product.loading')}}
+              </button>
           </template>
         </ClientOnly>
       </div>

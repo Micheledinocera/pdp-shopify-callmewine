@@ -39,7 +39,7 @@
                 class="px-4 py-6 sm:px-6 border-b border-gray-200 flex items-center justify-between"
               >
                 <div class="flex items-baseline gap-2">
-                  <h2 class="text-lg font-medium text-gray-900">Il tuo Carrello</h2>
+                  <h2 class="text-lg font-medium text-gray-900">{{$t('cart.title')}}</h2>
                   <span v-if="cart?.totalQuantity" class="text-sm text-gray-500"
                     >({{ cart.totalQuantity }})</span
                   >
@@ -64,7 +64,7 @@
                   v-else-if="!cart || !cart.products || cart.products.length === 0"
                   class="text-center py-12"
                 >
-                  <p class="text-gray-500">Il tuo carrello è vuoto.</p>
+                  <p class="text-gray-500">{{$t('cart.empty')}}</p>
                 </div>
 
                 <div v-else class="space-y-6">
@@ -73,7 +73,7 @@
                       @click="clearCart"
                       class="text-xs text-gray-400 hover:text-secondary transition-colors underline"
                     >
-                      Svuota carrello
+                      {{$t('cart.clear')}}
                     </button>
                   </div>
 
@@ -112,11 +112,11 @@
                           class="mt-2 space-y-1 bg-amber-50/60 border border-amber-200/50 p-2 rounded text-xs"
                         >
                           <span class="font-medium flex items-center gap-1">
-                            🎁 Confezione regalo inclusa
+                            {{$t('cart.giftIncluded')}}
                           </span>
                           <span v-if="item.giftMessage && item.giftMessage.length > 0" class="block text-gray-600 italic mt-0.5">
                             <span class="font-medium not-italic text-gray-700"
-                              >Dedica:</span
+                              > {{$t('cart.giftMessage')}}:</span
                             >
                             "{{ item.giftMessage }}"
                           </span>
@@ -125,7 +125,7 @@
 
                       <div class="flex items-center justify-between text-sm mt-1">
                         <p class="text-gray-500 text-xs">
-                          Quantità:
+                          {{$t('cart.quantity')}}
                           <span class="font-medium text-gray-900">{{
                             item.quantity
                           }}</span>
@@ -143,7 +143,7 @@
                 <div
                   class="flex justify-between text-base font-medium text-gray-900 mb-6"
                 >
-                  <p class="font-semibold">Totale stimato</p>
+                  <p class="font-semibold">{{$t('cart.estimatedTotal')}}</p>
                   <p class="font-bold text-lg text-secondary">{{ cart.totalCost }}</p>
                 </div>
 
@@ -152,7 +152,7 @@
                   target="_blank"
                   class="flex items-center justify-center rounded bg-primary px-6 py-3.5 text-sm font-bold text-white shadow-md hover:bg-secondary transition-colors uppercase w-full text-center tracking-wider"
                 >
-                  Procedi al Checkout
+                  {{$t('cart.checkout')}}
                 </a>
               </div>
             </div>

@@ -1,5 +1,30 @@
 {
-    "index":{
-        "welcome":"Benvenué a la maison poisson"
+    "index": {
+        "welcome": "Bienvenue",
+        "description": "Accédez à la page du produit en vedette pour tester l'intégration avec l'API Shopify Storefront.",
+        "loading": "Chargement...",
+        "viewProduct": "Voir le produit"
+    },
+    "product": {
+        "back": "Retour à l'accueil",
+        "loading": "Chargement...",
+        "productNamePlaceholder": "Nom du produit",
+        "pricePlaceholder": "€ 0,00",
+        "giftOption": "Ajouter l'emballage cadeau",
+        "giftLabel": "Message personnalisé:",
+        "giftPlaceholder": "Écrivez votre message cadeau ici...",
+        "chars": "caractères",
+        "addToCart": "Ajouter au panier",
+        "cartWarning": "Attention, vider le panier pour ajouter un nouveau produit"
+    },
+    "cart": {
+        "title": "Votre panier",
+        "empty": "Votre panier est vide.",
+        "clear": "Vider le panier",
+        "giftIncluded": "🎁 Emballage cadeau inclus",
+        "giftMessage": "Message",
+        "quantity": "Quantité:",
+        "estimatedTotal": "Total estimé",
+        "checkout": "Procéder au paiement"
     }
 }

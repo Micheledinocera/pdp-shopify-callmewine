@@ -1,5 +1,30 @@
 {
-    "index":{
-        "welcome":"Fish & chips"
+    "index": {
+        "welcome": "Fish & chips",
+        "description": "Visit the featured product page to test the Shopify Storefront API integration.",
+        "loading": "Loading...",
+        "viewProduct": "View Product"
+    },
+    "product": {
+        "back": "Back to home",
+        "loading": "Loading...",
+        "productNamePlaceholder": "Product name",
+        "pricePlaceholder": "€ 0.00",
+        "giftOption": "Add gift wrapping",
+        "giftLabel": "Personalized message:",
+        "giftPlaceholder": "Write your gift message here...",
+        "chars": "chars",
+        "addToCart": "Add to cart",
+        "cartWarning": "Warning, clear the cart to add a new product"
+    },
+    "cart": {
+        "title": "Your Cart",
+        "empty": "Your cart is empty.",
+        "clear": "Clear cart",
+        "giftIncluded": "🎁 Gift wrapping included",
+        "giftMessage": "Messagge",
+        "quantity": "Quantity:",
+        "estimatedTotal": "Estimated total",
+        "checkout": "Proceed to Checkout"
     }
 }
