@@ -116,39 +116,40 @@
 </template>
 
 <script setup>
-import { watch } from 'vue';
-import { useRuntimeConfig } from '#imports';
 const { t } = useI18n();
 const route = useRoute();
 
 const giftOption = ref(false);
 const giftMessage = ref("");
 
-// Nota: i dati del prodotto vengono richiesti tramite fetch al BFF (backend-for-frontend)
-// tramite la composable `useProduct`.
 const { product, pending: pendingProduct } = useProduct(route.params.id);
 
-// Aggiorna i meta dinamicamente quando il prodotto è disponibile
-watch(
-  () => product.value,
-  (p) => {
-    const title = p?.title ?? t('product.productNamePlaceholder');
-    const description = p?.description ?? t('index.description');
-    const image = p?.image ?? '';
+useHead({
+  title: () => product.value?.title ?? t('product.productNamePlaceholder'),
+  meta: [
+    { 
+      name: 'description', 
+      content: () => product.value?.description ?? t('index.description') 
+    },
+    { 
+      property: 'og:title', 
+      content: () => product.value?.title ?? t('product.productNamePlaceholder') 
+    },
+    { 
+      property: 'og:description', 
+      content: () => product.value?.description ?? t('index.description') 
+    },
+    { 
+      property: 'og:image', 
+      content: () => product.value?.image ?? '' 
+    },
+    { 
+      name: 'twitter:card', 
+      content: () => product.value?.image ? 'summary_large_image' : 'summary' 
+    }
+  ]
+});
 
-    useHead({
-      title,
-      meta: [
-        { name: 'description', content: description },
-        { property: 'og:title', content: title },
-        { property: 'og:description', content: description },
-        { property: 'og:image', content: image },
-        { name: 'twitter:card', content: image ? 'summary_large_image' : 'summary' }
-      ]
-    });
-  },
-  { immediate: true }
-);
 const { createCart, pending: pendingCart, cart, toggleCartPanelOpen } = useCart();
 
 const pending = computed(() => pendingProduct.value || pendingCart.value);
